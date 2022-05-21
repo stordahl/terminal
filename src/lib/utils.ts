@@ -23,9 +23,9 @@ const staticData:Partial<ParsedData> = {
   },
   social: {
     text: [
-      "<a href='https://twitter.com/stordahl_'>Twitter dot com</a>",
-      "<a href='https://github.com/stordahl'>Github</a>",
-      "<a href='https://stordahl.dev'>GUI Version of this site</a>",
+      "<p><a href='https://twitter.com/stordahl_' target='_blank'>Twitter dot com</a></p>",
+      "<p><a href='https://github.com/stordahl' target='_blank'>Github</a></p>",
+      "<p><a href='https://stordahl.dev' target='_blank'>GUI Version of this site</a></p>",
     ],
   },
 }

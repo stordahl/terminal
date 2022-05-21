@@ -25,14 +25,21 @@
 </script>
 <script lang=ts>
   import './base.css'
-  export let data:any
+  import { browser } from '$app/env'
+  import { toHTML } from '@portabletext/to-html'
 
+  export let data:any
+  console.log(
+    toHTML(data.posts[0].body)
+    // data.posts
+  )
   // $:console.log(data)
 
   let input:HTMLTextAreaElement
   let inputValue:string
   let cliIsFocused
 
+  const historySpacer:string = `<br>`
   const prompt:string = `
     <span id="prompt">
       <span class="blue">guest</span>
@@ -66,7 +73,11 @@
 </pre>`
 
   const keys = [
-    ...Object.keys(data).sort()
+    `<p>banner</p>`,  
+    `<p>clear</p>`,
+    `<p>help</p>`,
+    `<p>social</p>`,
+    `<p>whois</p>`,
   ]
 
   let history:Array<string> = [banner]
@@ -75,23 +86,22 @@
     inputValue = ''
     switch (cmd.toLowerCase()){
       case 'help':
-        // console.log(Object.keys(data).flat())
-        history = [...history, ...keys]
+        history = [...history, ...keys, historySpacer]
         break;
       case 'clear':
         history = []
         break;
       case 'whois':
-        history = [...history, ...data.whois.text]
+        history = [...history, ...data.whois.text, historySpacer]
         break;
       case 'banner':
-        history = [ ...history, banner]
+        history = [ ...history, banner, historySpacer]
         break;
       case 'social':
-        history.push()
+        history = [...history, ...data.social.text, historySpacer]
+        break;
       default:
-        history.push('<p class="red">U Command</p>')
-        history = history.flat()
+        history = [...history, '<p class="red">Unknown Command</p>', historySpacer]
     }
     input.scrollIntoView()
   }
@@ -110,7 +120,7 @@
     }
   }
 
-  
+  $: if(browser) requestAnimationFrame(() => window.scrollTo(0,100000)), history
 </script>
 <svelte:window on:keydown={handleKeyDown} on:click={() => input.focus()}/>
 <div id="term">

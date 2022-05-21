@@ -26,6 +26,7 @@ body {
   font-family: 'DM Mono', monospace;
   background-color: var(--bg);
   color: var(--white);
+  margin-bottom: 25px;
 }
 h1 {
   font-size: 2.25rem;
@@ -55,7 +56,7 @@ textarea:focus {
 #term {
   width: 100vw;
   height: 100vh;
-  padding: 15px;
+  padding: 35px;
 }
 
 #cmd-line {
@@ -64,6 +65,7 @@ textarea:focus {
   justify-content: flex-start;
   gap: 5px;
   margin-top: 15px;
+  padding-bottom: 25px;
   padding-top: 8px;
   border-top: 1px solid var(--white);
 }
@@ -73,7 +75,5 @@ textarea:focus {
 }
 
 #history {
-  max-width: 1200px;
   margin: auto;
-  /* text-align: center; */
 }
